@@ -1,0 +1,2 @@
+# Points
+Game GO version
