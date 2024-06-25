@@ -24,11 +24,11 @@ def display_board(a):
         for j in range(len(a[i])):
             print(a[i][j],end=' ')
 
-n = int(input('Размер доски(не больше 20): '))            
-display_board(board(n))
-print()
+n = int(input('Размер доски(не больше 20): '))
 b = board(n)
-print(b)
+display_board(b)
+print()
+
 ##desk = [['0' for j in range(n-1)] for i in range(n-1) ]
 ##for i in range(len(desk)):
 ##        print()
@@ -42,31 +42,50 @@ print(b)
 ##4 захваченная черная точка
 ##
 ##
-def turn(n,x,y):
-    l = [1,2]
-    if b[x][y] == '.':
-        b[x][y] = l[n]
-        return True
-    else:
-        return False
+def turn(n):
+    while True:
+        print()
+        k = input(f'Ход {n+1} игрока(enter чтобы закончить) ')
+        if not k:
+            return False
+        x = int(alf.index(k[0]))
+        y = int(alf.index(k[1]))
+        l = ['@','#']
+        #check
+        if b[x][y] == '.':#empty point
+            b[x][y] = l[n]
+            display_board(b)
+            return True
+        else:
+            print("Ошибка! Попробуйте снова")
     
-n = 0
-while True:
-    print()
-    k = input(f'Ход {n+1} игрока(enter чтобы закончить) ')
-    if not k:
-        #end()
-        break
-    if turn(n,int(alf.index(k[0])),int(alf.index(k[1]))):
-        #chek
-        if n == 1: n = 0
-        else: n+=1
-        display_board(b)
-    else:
-        print("Ошибка! Попробуйте снова")
+
+def game():
+    n = 0
+    while True:
+        if not turn(n): break
+        n = not n
+    #end()
+    print('end')
 
 
+    
+##while True:
+##    print()
+##    k = input(f'Ход {n+1} игрока(enter чтобы закончить) ')
+##    if not k:
+##        #end()
+##        break
+##    if turn(n,int(alf.index(k[0])),int(alf.index(k[1]))):
+##        #chek
+##        if n == 1: n = 0
+##        else: n+=1
+##        display_board(b)
+##    else:
+##        print("Ошибка! Попробуйте снова")
 
+
+game()
 
 
 
